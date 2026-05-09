@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-black: #0A0A0A;
+    --color-lead: #141414;
+    --color-charcoal: #1E1E1E;
+    --color-silver: #8A9099;
+    --color-silver-light: #C0C8D0;
+    --color-gold: #C8972A;
+    --color-gold-light: #E8B84B;
+    --color-gold-dim: #9A6E1A;
+    --color-white: #F5F5F5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    cursor: none;
+  }
+
+  body {
+    @apply bg-black text-white font-body antialiased;
+    cursor: none;
+  }
+
+  * {
+    cursor: none !important;
+  }
+
+  ::selection {
+    background-color: rgba(200, 151, 42, 0.3);
+    color: #F5F5F5;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  a, button {
+    cursor: none;
+  }
+}
+
+@layer components {
+  .gold-divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold to-transparent opacity-40;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+
+  .gold-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-gold after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .section-label {
+    @apply text-gold text-xs font-body font-semibold tracking-[0.2em] uppercase flex items-center gap-3;
+  }
+
+  .section-label::before {
+    content: '';
+    @apply block h-px w-8 bg-gold;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #C8972A, #E8B84B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-texture-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8972A' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8972A;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E8B84B;
+}
