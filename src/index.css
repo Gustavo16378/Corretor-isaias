@@ -17,16 +17,10 @@
 
   html {
     scroll-behavior: smooth;
-    cursor: none;
   }
 
   body {
     @apply bg-black text-white font-body antialiased;
-    cursor: none;
-  }
-
-  * {
-    cursor: none !important;
   }
 
   ::selection {
@@ -39,7 +33,7 @@
   }
 
   a, button {
-    cursor: none;
+    cursor: pointer;
   }
 }
 

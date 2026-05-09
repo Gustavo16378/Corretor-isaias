@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import CustomCursor from '@/components/CustomCursor'
 import ScrollProgress from '@/components/ScrollProgress'
 
 import Navbar from '@/sections/Navbar'
@@ -120,7 +119,6 @@ export default function App() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <CustomCursor />
           <ScrollProgress />
           <Navbar />
           <main>
