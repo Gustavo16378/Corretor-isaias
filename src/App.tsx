@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import CustomCursor from '@/components/CustomCursor'
@@ -73,47 +72,43 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const { seo } = SITE_CONFIG
 
+  const jsonLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateAgent',
+    name: SITE_CONFIG.corretor.nome,
+    description: seo.description,
+    url: seo.siteUrl,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Palmas',
+      addressRegion: 'TO',
+      addressCountry: 'BR',
+    },
+    sameAs: [SITE_CONFIG.corretor.instagram],
+  })
+
   return (
-    <HelmetProvider>
-      <Helmet>
-        <title>{seo.title}</title>
-        <meta name="description" content={seo.description} />
-        <meta name="keywords" content={seo.keywords.join(', ')} />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content={SITE_CONFIG.corretor.nome} />
-        <meta name="geo.region" content="BR-TO" />
-        <meta name="geo.placename" content="Palmas" />
-        <link rel="canonical" href={seo.siteUrl} />
-
-        <meta property="og:title" content={seo.title} />
-        <meta property="og:description" content={seo.description} />
-        <meta property="og:image" content={seo.ogImage} />
-        <meta property="og:url" content={seo.siteUrl} />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="pt_BR" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={seo.title} />
-        <meta name="twitter:description" content={seo.description} />
-        <meta name="twitter:image" content={seo.ogImage} />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'RealEstateAgent',
-            name: SITE_CONFIG.corretor.nome,
-            description: seo.description,
-            url: seo.siteUrl,
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Palmas',
-              addressRegion: 'TO',
-              addressCountry: 'BR',
-            },
-            sameAs: [SITE_CONFIG.corretor.instagram],
-          })}
-        </script>
-      </Helmet>
+    <>
+      {/* React 19 — metadata nativa, sem biblioteca externa */}
+      <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+      <meta name="keywords" content={seo.keywords.join(', ')} />
+      <meta name="robots" content="index, follow" />
+      <meta name="author" content={SITE_CONFIG.corretor.nome} />
+      <meta name="geo.region" content="BR-TO" />
+      <meta name="geo.placename" content="Palmas" />
+      <link rel="canonical" href={seo.siteUrl} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:image" content={seo.ogImage} />
+      <meta property="og:url" content={seo.siteUrl} />
+      <meta property="og:type" content="website" />
+      <meta property="og:locale" content="pt_BR" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:description" content={seo.description} />
+      <meta name="twitter:image" content={seo.ogImage} />
+      <script type="application/ld+json">{jsonLd}</script>
 
       <AnimatePresence mode="wait">
         {loading && <LoadingScreen key="loading" onDone={() => setLoading(false)} />}
@@ -144,6 +139,6 @@ export default function App() {
           <Footer />
         </motion.div>
       )}
-    </HelmetProvider>
+    </>
   )
 }
